@@ -1,13 +1,25 @@
 <?php require_once 'inc/header.php'; ?>
 <?php require_once 'inc/side_bar.php'; ?>
+<?php require_once '../classes/Product.php'; ?>
 <?php require_once '../classes/Category.php'; ?>
 <?php require_once '../classes/Brand.php'; ?>
+
+<?php
+$product = new Product();
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+    $insert_product = $product->productInsert($_POST, $_FILES);
+}
+?>
     <div class="col-md-9 col-sm-8">
         <div class="main-content">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Добавить новый товар</strong></div>
                 <div class="panel-body">
-
+                    <?php
+                    if (isset($insert_product)) {
+                        echo $insert_product;
+                    }
+                    ?>
                     <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Название товара</label>

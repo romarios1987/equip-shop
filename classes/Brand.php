@@ -58,7 +58,7 @@ class Brand
         $brand_name = mysqli_real_escape_string($this->db->link, $brand_name);
         $id = mysqli_real_escape_string($this->db->link, $id);
         if (empty($brand_name)) {
-            $msg = "<div class='bg-danger'><p class='text-danger text-center'>Поле ввода названия категории не должно быть пустым !</p></div>";
+            $msg = "<div class='bg-danger'><p class='text-danger text-center'>Поле ввода названия бренда не должно быть пустым !</p></div>";
             return $msg;
         } else {
             $query = "UPDATE tbl_brand SET brand_name = '$brand_name' WHERE brand_id = '$id'";
