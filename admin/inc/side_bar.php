@@ -27,7 +27,7 @@
             <div class="link"><i class="fa fa-mobile"></i><i class="fa fa-product-hunt" aria-hidden="true"></i> Продукты<i
                         class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <li><a href="#">Tablets</a></li>
+                <li><a href="product_add.php">Добавить товар</a></li>
                 <li><a href="#">Dispositivos mobiles</a></li>
                 <li><a href="#">Medios de escritorio</a></li>
                 <li><a href="#">Otros dispositivos</a></li>
