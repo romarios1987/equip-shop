@@ -4,22 +4,22 @@
 
 <?php
 $brand = new Brand();
-/*
-if (isset($_GET['del_cat'])) {
-    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['del_cat']);
-    $del_cat = $cat->delCategory($id);
-}*/
+
+if (isset($_GET['del_brand'])) {
+    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['del_brand']);
+    $del_brand = $brand->delBrand($id);
+}
 ?>
     <div class="col-md-9 col-sm-8">
         <div class="main-content">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Список брендов</strong></div>
                 <div class="panel-body">
-<!--                    --><?php
-/*                    if (isset($del_cat)) {
-                        echo $del_cat;
+                    <?php
+                    if (isset($del_brand)) {
+                        echo $del_brand;
                     }
-                    */?>
+                    ?>
                     <table class="table table-bordered table-condensed table-striped">
                         <thead>
                         <tr>
