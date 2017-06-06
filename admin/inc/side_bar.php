@@ -28,9 +28,7 @@
                         class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
                 <li><a href="product_add.php">Добавить товар</a></li>
-                <li><a href="#">Dispositivos mobiles</a></li>
-                <li><a href="#">Medios de escritorio</a></li>
-                <li><a href="#">Otros dispositivos</a></li>
+                <li><a href="product_list.php">Список товаров</a></li>
             </ul>
         </li>
         <li>

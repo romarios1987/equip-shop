@@ -40,7 +40,8 @@ class Product
             $msg = "<div class='bg-danger'><p class='text-danger text-center'>Поля не должны быть пустыми !</p></div>";
             return $msg;
         } elseif ($file_size > 1048567) {
-            echo "<div class='bg-danger'><p class='text-danger text-center'>Размер изображения должен быть меньше 1MB!</p></div>";
+            $msg = "<div class='bg-danger'><p class='text-danger text-center'>Размер изображения должен быть меньше 1MB!</p></div>";
+            return $msg;
         } elseif (in_array($file_ext, $permited) === false) {
             $msg = "<div class='bg-danger'><p class='text-danger text-center'>Вы можете загружать только:" . implode(', ', $permited) . "</p></div>";
             return $msg;
@@ -57,6 +58,25 @@ class Product
                 return $msg;
             }
         }
+    }
+
+    // Виборка продуктов, объединение таблиц
+    public function getAllProduct()
+    {
+        // Первый вариант
+        /*        $query = "SELECT p.*, c.cat_name, b.brand_name
+                          FROM tbl_product as p, tbl_category as c, tbl_brand as b
+                          WHERE p.cat_id = c.cat_id AND p.brand_id = b.brand_id
+                          ORDER BY p.product_id DESC";*/
+
+        // Второй вариант
+        $query = "SELECT tbl_product.*, tbl_category.cat_name, tbl_brand.brand_name
+                  FROM tbl_product 
+                  INNER JOIN tbl_category ON tbl_product.cat_id = tbl_category.cat_id 
+                  INNER JOIN tbl_brand ON tbl_product.brand_id = tbl_brand.brand_id 
+                  ORDER BY product_id DESC";
+        $result = $this->db->select($query);
+        return $result;
     }
 
 }
