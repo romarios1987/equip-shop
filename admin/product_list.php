@@ -7,19 +7,20 @@
 $product = new Product();
 $fm = new Format();
 
-/*if (isset($_GET['del_cat'])) {
-    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['del_cat']);
-    $del_cat = $cat->delCategory($id);
+
+if (isset($_GET['del_product'])) {
+    $id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['del_product']);
+    $del_product = $product->delProduct($id);
 }
-*/ ?>
+?>
     <div class="col-md-9 col-sm-8">
         <div class="main-content">
             <div class="panel panel-default">
                 <div class="panel-heading"><strong>Список товаров</strong></div>
                 <div class="panel-body">
                     <?php
-                    if (isset($del_cat)) {
-                        echo $del_cat;
+                    if (isset($del_product)) {
+                        echo $del_product;
                     }
                     ?>
                     <div class="table-responsive">
@@ -50,8 +51,19 @@ $fm = new Format();
                                         <td><?= $result['brand_name']; ?></td>
                                         <td><?= $fm->textShorten($result['body'], 120); ?></td>
                                         <td><?= $result['price']; ?></td>
-                                        <td><div style="width: 80px; height: auto;"><img src="<?= $result['image']; ?>" class="img-responsive" alt="<?= $result['product_name']; ?>"></div></td>
-                                        <td><?= $result['type']; ?></td>
+                                        <td>
+                                            <div style="width: 80px; height: auto;"><img src="<?= $result['image']; ?>"
+                                                                                         class="img-responsive"
+                                                                                         alt="<?= $result['product_name']; ?>">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <?php if ($result['type'] == 0) {
+                                                echo 'Рекомендуемы';
+                                            } else {
+                                                echo 'Обычные';
+                                            } ?>
+                                        </td>
                                         <td><a href="product_edit.php?product_id=<?= $result['product_id']; ?>"
                                                class="btn btn-primary btn-xs" title="редактировать"><i
                                                         class="fa fa-pencil"></i></a> ||
