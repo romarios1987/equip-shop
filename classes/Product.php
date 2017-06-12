@@ -1,6 +1,7 @@
 <?php
-require_once '../lib/Database.php';
-require_once '../helpers/Format.php';
+$file_path = realpath(dirname(__FILE__));
+include_once($file_path . '/../lib/Database.php');
+include_once($file_path . '/../helpers/Format.php');
 
 /**
  * Product Class
@@ -185,5 +186,14 @@ class Product
             return $msg;
         }
     }
+
+    // Выборка рекомендованих товаров (Featured Products)
+    public function getFeatureProduct()
+    {
+        $query = "SELECT * FROM tbl_product WHERE type = '0' ORDER BY product_id DESC LIMIT 4";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
 
 }

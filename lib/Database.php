@@ -1,11 +1,12 @@
 <?php
-require_once '../config/config.php';
-
+$file_path = realpath(dirname(__FILE__));
+include_once ($file_path . '/../config/config.php');
 /**
  * Database Class
  */
 class Database
 {
+
     public $host = DB_HOST;
     public $user = DB_USER;
     public $pass = DB_PASS;

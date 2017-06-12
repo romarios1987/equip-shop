@@ -1,4 +1,5 @@
-<?php require_once '../lib/Session.php';
+<?php
+require_once '../lib/Session.php';
 Session::checkSession();
 
 //set headers to NOT cache a page

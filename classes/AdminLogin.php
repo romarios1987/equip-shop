@@ -1,8 +1,9 @@
 <?php
-require_once '../lib/Session.php';
+$file_path = realpath(dirname(__FILE__));
+include_once($file_path . '/../lib/Session.php');
 Session::checkLogin();
-require_once '../lib/Database.php';
-require_once '../helpers/Format.php';
+include_once($file_path . '/../lib/Database.php');
+include_once($file_path . '/../helpers/Format.php');
 
 /**
  * AdminLogin Class
