@@ -64,4 +64,44 @@ class Cart
         $result = $this->db->select($query);
         return $result;
     }
+
+
+    /**
+     * Метод обновления количества товара в корзине
+     */
+    public function updateCartQuantity($cart_id, $quantity)
+    {
+        $cart_id = mysqli_real_escape_string($this->db->link, $cart_id);
+        $quantity = mysqli_real_escape_string($this->db->link, $quantity);
+
+
+        $query = "UPDATE tbl_cart SET quantity = '$quantity' WHERE cart_id ='$cart_id'";
+        $updated_row = $this->db->update($query);
+        if ($updated_row) {
+            $msg = "<div class='bg-success'><p class='text-success text-center'>Количество товаров успешно обновлено !</p></div>";
+            return $msg;
+        } else {
+            $msg = "<div class='bg-danger'><p class='text-danger text-center'>Количество товаров не обновлено !</p></div>";
+            return $msg;
+        }
+    }
+
+    /**
+     * Метод удаление товара с корзины
+     */
+
+    public function deleteProductByCart($delete_id)
+    {
+        $delete_id = mysqli_real_escape_string($this->db->link, $delete_id);
+        $query = "DELETE FROM tbl_cart WHERE cart_id = '$delete_id'";
+        $del_data = $this->db->delete($query);
+        if ($del_data) {
+            echo "<script>window.location = 'cart.php';</script>";
+        } else {
+            $msg = "<div class='bg-danger'><p class='text-danger text-center'>Товар не удален !</p></div>";
+            return $msg;
+        }
+    }
+
+
 }

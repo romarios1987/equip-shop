@@ -1,9 +1,33 @@
 <?php require_once 'inc/header.php'; ?>
+
+<?php
+// Удаление товара с корзины
+if (isset($_GET['del_product'])) {
+    $delete_id = preg_replace('/[^-a-zA-Z0-9_]/', '', $_GET['del_product']);
+    $delete_product = $cart->deleteProductByCart($delete_id);
+}
+?>
+
+
+<?php
+
+// Если методом POST - ок, вызов updateCartQuantity
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $cart_id = $_POST['cart_id'];
+    $quantity = $_POST['quantity'];
+    $update_cart = $cart->updateCartQuantity($cart_id, $quantity);
+    if ($quantity <= 0) {
+        $delete_product = $cart->deleteProductByCart($cart_id);
+    }
+}
+?>
 <div class="main">
     <div class="content">
         <div class="cartoption">
             <div class="cartpage">
                 <h2>Ваша корзина</h2>
+                <?php if (isset($update_cart)) echo $update_cart; ?>
+                <?php if (isset($delete_product)) echo $delete_product; ?>
                 <table class="tblone">
                     <tr>
                         <th width="5%">№</th>
@@ -29,15 +53,20 @@
                                 </td>
                                 <td><?= $result['price']; ?></td>
                                 <td>
+
                                     <form action="" method="post">
-                                        <input type="number" name="" value="<?= $result['quantity']; ?>">
+                                        <input type="hidden" name="cart_id" value="<?= $result['cart_id']; ?>">
+                                        <input type="number" min="0" name="quantity"
+                                               value="<?= $result['quantity']; ?>">
                                         <input type="submit" name="submit" value="Обновить">
                                     </form>
+
                                 </td>
                                 <td><?php
                                     $total = $result['price'] * $result['quantity'];
                                     echo $total; ?></td>
-                                <td><a href="">X</a></td>
+                                <td><a onclick="return confirm('Вы уверены, что хотите удалить!');"
+                                       href="?del_product=<?= $result['cart_id']; ?>">X</a></td>
                             </tr>
                             <?php $sum = $sum + $total; ?>
                         <?php }
