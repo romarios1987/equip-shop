@@ -1,13 +1,13 @@
 <?php
 $file_path = realpath(dirname(__FILE__));
-include_once ($file_path . '/../lib/Session.php');
+include_once($file_path . '/../lib/Session.php');
 Session::init();
 
-include_once ($file_path . '/../lib/Database.php');
-include_once ($file_path . '/../helpers/Format.php');
+include_once($file_path . '/../lib/Database.php');
+include_once($file_path . '/../helpers/Format.php');
 
 //spl_autoload_register — Регистрирует заданную функцию в качестве реализации метода __autoload()
-spl_autoload_register(function ($class){
+spl_autoload_register(function ($class) {
     include_once "classes/" . $class . ".php";
 });
 
@@ -21,7 +21,7 @@ header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 header("Cache-Control: max-age=2592000");
-//ob_start();
+ob_start();
 ?>
 <!doctype html>
 <html lang="ru">
@@ -35,8 +35,9 @@ header("Cache-Control: max-age=2592000");
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/flexslider.css">
+    <link rel="stylesheet" href="admin/css/bootstrap.min.css">
 
-   <!-- js files-->
+    <!-- js files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
 

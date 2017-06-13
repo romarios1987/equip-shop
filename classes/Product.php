@@ -195,5 +195,23 @@ class Product
         return $result;
     }
 
+    // Выборка новых товаров (New Products)
+    public function getNewProduct()
+    {
+        $query = "SELECT * FROM tbl_product WHERE type = '1' ORDER BY product_id DESC LIMIT 4";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
+    // Выбор товара по ID
+    public function getSingleProduct($id)
+    {
+        $query = "SELECT p.*, c.cat_name, b.brand_name
+                  FROM tbl_product as p, tbl_category as c, tbl_brand as b
+                  WHERE p.cat_id = c.cat_id AND p.brand_id = b.brand_id AND p.product_id = '$id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
 
 }

@@ -941,7 +941,7 @@ p.note{
 	padding:0.3em 0;
 	color:#969696;
 	line-height: 1.6em;
-	font-family : verdana, arial, helvetica, helve, sans-serif; 	
+	font-family : verdana, arial, helvetica, helve, sans-serif;
 }
 .price p{
 	font-size:0.8125em;
@@ -1582,7 +1582,7 @@ table.tblone img {
 	margin:0 8px;
 }
 .domain_search input[type="text"]{
-	background: url(../images/text_box_2.png) no-repeat;
+	/*background: url(../images/text_box_2.png) no-repeat;*/
 	margin:0;
 	width:51.6%;
 }
@@ -1789,7 +1789,7 @@ p.terms {
 	margin:0 8px;
 }
 .domain_search input[type="text"]{
-	background: url(../images/text_box_2.png) no-repeat;
+	/*background: url(../images/text_box_2.png) no-repeat;*/
 	margin:0;
 	width:51.6%;
 }
@@ -1807,7 +1807,7 @@ p.terms {
 	width:70%;
 }
 .check_domain input[type="text"] {
-	background: url(../images/text_box_reg2.png) no-repeat;
+	/*background: url(../images/text_box_reg2.png) no-repeat;*/
 	width:80%;
 }
 .support_desc h3, .plans h3, .domain_registration h3 {
