@@ -66,9 +66,21 @@ ob_start();
             </div>
             <div class="shopping_cart">
                 <div class="cart">
-                    <a href="#" title="View my shopping cart" rel="nofollow">
-                        <span class="cart_title">Cart</span>
-                        <span class="no_product">(empty)</span>
+                    <a href="cart.php" title="View my shopping cart" rel="nofollow">
+                        <span class="cart_title">Корзина</span>
+                        <span class="no_product">
+                            <?php
+                            $get_data = $cart->checkCartTable();
+                            if ($get_data) {
+                                $sum = Session::get("sum");
+                                $quant = Session::get("quant");
+                                echo $sum . ' грн' . ' (' . $quant . ')';
+                            } else {
+                                echo "(Empty)";
+                            }
+                            ?>
+
+                        </span>
                     </a>
                 </div>
             </div>

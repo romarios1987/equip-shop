@@ -103,5 +103,13 @@ class Cart
         }
     }
 
+    public function checkCartTable()
+    {
+        $sessionId = session_id();
+        $query = "SELECT * FROM tbl_cart WHERE session_id = '$sessionId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
+
 
 }

@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ($get_products) {
                         $i = 0;
                         $sum = 0;
+                        $quant = 0;
                         while ($result = $get_products->fetch_assoc()) {
                             $i++; ?>
                             <tr>
@@ -68,32 +69,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td><a onclick="return confirm('Вы уверены, что хотите удалить!');"
                                        href="?del_product=<?= $result['cart_id']; ?>">X</a></td>
                             </tr>
-                            <?php $sum = $sum + $total; ?>
+                            <?php
+                            $quant = $quant + $result['quantity'];
+                            $sum = $sum + $total;
+                            Session::set("quant", $quant);
+                            Session::set("sum", $sum);
+                            ?>
                         <?php }
                     } ?>
 
                 </table>
-                <table style="float:right;text-align:left;" width="40%">
-                    <tr>
-                        <th>Промежуточный итог:</th>
-                        <td><?= $sum;; ?> грн</td>
-                    </tr>
-                    <tr>
-                        <th>Процентная ставка:</th>
-                        <td>10%</td>
-                    </tr>
-                    <tr>
-                        <th>Общая сумма:</th>
-                        <td>
-                            <?php
-                            $vat = $sum * 0.1;
-                            $grand_total = $sum + $vat;
-                            echo $grand_total;
-                            ?>
+                <?php
+                $get_data = $cart->checkCartTable();
+                if ($get_data) {
+                    ?>
+                    <table style="float:right;text-align:left;" width="40%">
+                        <tr>
+                            <th>Промежуточный итог:</th>
+                            <td><?= $sum;; ?> грн</td>
+                        </tr>
+                        <tr>
+                            <th>Процентная ставка:</th>
+                            <td>10%</td>
+                        </tr>
+                        <tr>
+                            <th>Общая сумма:</th>
+                            <td>
+                                <?php
+                                $vat = $sum * 0.1;
+                                $grand_total = $sum + $vat;
+                                echo $grand_total;
+                                ?>
 
-                        </td>
-                    </tr>
-                </table>
+                            </td>
+                        </tr>
+                    </table>
+                <?php }else{echo "Ваша корзина пуста!";}  ?>
             </div>
             <div class="shopping">
                 <div class="shopleft">
